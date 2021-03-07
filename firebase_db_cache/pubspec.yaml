@@ -11,8 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  data_cache_manager:
-    path: ../data_cache_manager
+  data_cache_manager: ">=0.0.1 <0.1.0"
   firebase_database: ">=4.0.0 <5.0.0"
 
 dev_dependencies:
