@@ -6,7 +6,7 @@ homepage: https://github.com/zeshuaro/data_cache_manager/tree/main/firebase_db_c
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.17.0"
+  flutter: ">=1.20.0"
 
 dependencies:
   flutter:
