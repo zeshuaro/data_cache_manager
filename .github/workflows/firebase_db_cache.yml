@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "firebase_db_cache/**"
+      - ".github/workflows/firebase_db_cache.yml"
   pull_request:
     paths:
       - "firebase_db_cache/**"
