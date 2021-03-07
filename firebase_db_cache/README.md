@@ -5,6 +5,8 @@ A Flutter plugin for fetching Firebase Realtime Database data with read from cac
 [![pub package](https://img.shields.io/pub/v/data_cache_manager.svg)](https://pub.dartlang.org/packages/firebase_db_cache)
 [![docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://pub.dev/documentation/firebase_db_cache/latest/)
 [![MIT License](https://img.shields.io/github/license/zeshuaro/data_cache_manager.svg)](https://github.com/zeshuaro/data_cache_manager/blob/main/firebase_db_cache/LICENSE)
+[![firebase_db_cache](https://github.com/zeshuaro/data_cache_manager/actions/workflows/firebase_db_cache.yml/badge.svg)](https://github.com/zeshuaro/data_cache_manager/actions/workflows/firebase_db_cache.yml)
+[![codecov](https://codecov.io/gh/zeshuaro/data_cache_manager/branch/main/graph/badge.svg?token=BA2LTD1XI1)](https://codecov.io/gh/zeshuaro/data_cache_manager)
 [![Effective Dart](https://img.shields.io/badge/style-Effective%20Dart-40c4ff.svg)](https://github.com/google/pedantic)
 
 This plugin is designed for applications using the `Query.once()` method in `firebase_database` plugin, and is implemented with read from cache first then server.
