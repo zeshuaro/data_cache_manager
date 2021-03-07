@@ -78,14 +78,16 @@ final secondData = await firebaseDbCache.get(
 Alternatively, you can use the `removeSameKeyData` parameter to remove all outdated data with the same key:
 
 ```dart
-// If the first cached data is outdated, it will be removed along with all the other data with the same key
+// If the first cached data is outdated, it will be removed along with all the 
+// other data with the same key
 final firstData = await firebaseDbCache.get(
     firstQuery, 
     updatedAt: updatedAt,
     removeSameKeyData: true,
 );
 
-// The second cached data is removed already and so this will be fetching data from Firebase
+// The second cached data is removed already and so this will be fetching data 
+// from Firebase
 final secondData = await firebaseDbCache.get(secondQuery);
 ```
 
