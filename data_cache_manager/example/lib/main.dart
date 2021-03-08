@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
                         Text('Use count: ${_cachedData.useCount}\n'),
                       ],
                     ),
-                    RaisedButton(
+                    ElevatedButton(
                       onPressed: () async {
                         setState(() => _cachedData = null);
                         final data = await _manager.get(_key);
@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
                       child: Text('Refresh'),
                     ),
                     SizedBox(height: 16),
-                    RaisedButton(
+                    ElevatedButton(
                       onPressed: () async {
                         setState(() => _cachedData = null);
                         final now = DateTime.now();
