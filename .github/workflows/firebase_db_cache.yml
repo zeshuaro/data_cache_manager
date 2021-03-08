@@ -34,7 +34,7 @@ jobs:
         env:
           TOTAL: ${{ steps.analysis.outputs.total }}
           TOTAL_MAX: ${{ steps.analysis.outputs.total_max }}
-          MIN_SCORE: 80
+          MIN_SCORE: 90
         run: |
           PERCENTAGE=$(( $TOTAL * 100 / $TOTAL_MAX ))
           if (( $PERCENTAGE < $MIN_SCORE ))
