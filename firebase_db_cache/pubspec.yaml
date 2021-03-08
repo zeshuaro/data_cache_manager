@@ -1,7 +1,7 @@
 name: firebase_db_cache
 description: A Flutter plugin for fetching Firebase database data with read from
   cache first then server.
-version: 0.2.0
+version: 0.3.0
 homepage: https://github.com/zeshuaro/data_cache_manager/tree/main/firebase_db_cache
 
 environment:
