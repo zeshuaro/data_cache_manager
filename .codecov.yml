@@ -19,3 +19,13 @@ comment:
   behavior: default
   require_changes: no
   show_carryforward_flags: true
+
+flags:
+  data_cache_manager:
+    paths:
+      - data_cache_manager
+    carryforward: true
+  firebase_db_cache:
+    paths:
+      - firebase_db_cache
+    carryforward: true
