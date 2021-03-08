@@ -20,12 +20,12 @@ class _MyAppState extends State<MyApp> {
   final _rootRef = FirebaseDatabase.instance.reference();
   final _key = 'key';
   final _value = 'value';
-  Future<CachedData> _futureData;
+  CachedData _cachedData;
 
   @override
   void initState() {
     super.initState();
-    _futureData = _fetchData();
+    _fetchData();
   }
 
   @override
@@ -36,13 +36,9 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Data Cache Manager'),
         ),
         body: Center(
-          child: FutureBuilder<CachedData>(
-            future: _futureData,
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
-              } else if (snapshot.hasData) {
-                final data = snapshot.data;
+          child: Builder(
+            builder: (context) {
+              if (_cachedData != null) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -50,29 +46,31 @@ class _MyAppState extends State<MyApp> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Cached data: ${data.value}\n'),
-                        Text('Cache location: ${data.location}\n'),
-                        Text('Updated at: ${data.updatedAt}\n'),
-                        Text('Last used at: ${data.lastUsedAt}\n'),
-                        Text('Use count: ${data.useCount}\n'),
+                        Text('Cached data: ${_cachedData.value}\n'),
+                        Text('Cache location: ${_cachedData.location}\n'),
+                        Text('Updated at: ${_cachedData.updatedAt}\n'),
+                        Text('Last used at: ${_cachedData.lastUsedAt}\n'),
+                        Text('Use count: ${_cachedData.useCount}\n'),
                       ],
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        setState(() => _futureData = null);
+                        setState(() => _cachedData = null);
                         final query = _rootRef.child(_key);
-                        _futureData = _firebaseDbCache.get(query);
+                        final data = await _firebaseDbCache.get(query);
+                        setState(() => _cachedData = data);
                       },
                       child: Text('Refresh'),
                     ),
                     SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () async {
-                        setState(() => _futureData = null);
+                        setState(() => _cachedData = null);
                         final now = DateTime.now();
                         final query = _rootRef.child(_key);
-                        _futureData =
-                            _firebaseDbCache.get(query, updatedAt: now);
+                        final data =
+                            await _firebaseDbCache.get(query, updatedAt: now);
+                        setState(() => _cachedData = data);
                       },
                       child: Text('Update'),
                     ),
@@ -88,9 +86,10 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  Future<CachedData> _fetchData() async {
+  Future<void> _fetchData() async {
     await _rootRef.child(_key).set(_value);
     final query = _rootRef.child(_key);
-    return _firebaseDbCache.get(query);
+    final data = await _firebaseDbCache.get(query);
+    setState(() => _cachedData = data);
   }
 }
