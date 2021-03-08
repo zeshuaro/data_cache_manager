@@ -16,8 +16,8 @@ dependencies:
     path: ../
   cupertino_icons: ^1.0.0
   data_cache_manager: ^0.0.1
-  firebase_core: ^0.5.3
-  firebase_database: ^4.4.0
+  firebase_core: ^0.6.0
+  firebase_database: ^5.0.0
 
 dev_dependencies:
   flutter_test:
