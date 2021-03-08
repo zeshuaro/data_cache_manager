@@ -7,7 +7,7 @@ A Flutter cache manager plugin for storing and managing Dart data types.
 [![MIT License](https://img.shields.io/github/license/zeshuaro/data_cache_manager.svg)](https://github.com/zeshuaro/data_cache_manager/blob/main/data_cache_manager/LICENSE)
 [![data_cache_manager](https://github.com/zeshuaro/data_cache_manager/actions/workflows/data_cache_manager.yml/badge.svg)](https://github.com/zeshuaro/data_cache_manager/actions/workflows/data_cache_manager.yml)
 [![codecov](https://codecov.io/gh/zeshuaro/data_cache_manager/branch/main/graph/badge.svg?token=BA2LTD1XI1&flag=data_cache_manager)](https://codecov.io/gh/zeshuaro/data_cache_manager)
-[![Effective Dart](https://img.shields.io/badge/style-pedantic-40c4ff.svg)](https://github.com/google/pedantic)
+[![pedantic](https://img.shields.io/badge/style-pedantic-40c4ff.svg)](https://github.com/google/pedantic)
 
 ## Getting Started
 
