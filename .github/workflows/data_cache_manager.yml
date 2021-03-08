@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "data_cache_manager/**"
-      - ".github/workflows/data_cache_manager.yml"
   pull_request:
     paths:
       - "data_cache_manager/**"

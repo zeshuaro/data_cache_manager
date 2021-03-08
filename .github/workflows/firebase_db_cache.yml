@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "firebase_db_cache/**"
-      - ".github/workflows/firebase_db_cache.yml"
   pull_request:
     paths:
       - "firebase_db_cache/**"
@@ -59,9 +56,10 @@ jobs:
         with:
           channel: stable
 
-      - name: Run tests 🧪
+      - name: Run analyzer and tests 🧪
         run: |
           flutter pub get
+          flutter analyze
           flutter test --coverage
       - name: Upload coverage report 📡
         uses: codecov/codecov-action@v1
