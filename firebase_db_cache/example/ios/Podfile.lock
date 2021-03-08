@@ -4,10 +4,10 @@ PODS:
   - Firebase/Database (7.3.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 7.3.0)
-  - firebase_core (0.6.0):
+  - firebase_core (0.7.0):
     - Firebase/CoreOnly (= 7.3.0)
     - Flutter
-  - firebase_database (5.0.0):
+  - firebase_database (6.0.0):
     - Firebase/Database (= 7.3.0)
     - firebase_core
     - Flutter
@@ -75,12 +75,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
-  firebase_core: 8613bc5de3449d9d068be5b234a7c97a7f08af81
-  firebase_database: d782d1bf903ae76e90f6a1117c307da99c7dd1a0
+  firebase_core: 91b27774a52f41f8b58484a75edf71197ac01c59
+  firebase_database: 3a4ba698b64cf7d2c5e4b6e00e5ed5bb6898815b
   FirebaseCore: 4d3c72622ce0e2106aaa07bb4b2935ba2c370972
   FirebaseCoreDiagnostics: 179bf3831213451c8addd036aca7fcf5492ec154
   FirebaseDatabase: 22199cb121a527ae59df646d61426fbb12f5627a
-  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
   GoogleUtilities: 31c5b01f978a70c6cff2afc6272b3f1921614b43
