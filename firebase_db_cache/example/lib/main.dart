@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
                         Text('Use count: ${data.useCount}\n'),
                       ],
                     ),
-                    RaisedButton(
+                    ElevatedButton(
                       onPressed: () async {
                         setState(() => _futureData = null);
                         final query = _rootRef.child(_key);
@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
                       child: Text('Refresh'),
                     ),
                     SizedBox(height: 16),
-                    RaisedButton(
+                    ElevatedButton(
                       onPressed: () async {
                         setState(() => _futureData = null);
                         final now = DateTime.now();
