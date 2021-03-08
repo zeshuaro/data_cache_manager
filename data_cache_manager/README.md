@@ -1,6 +1,6 @@
 # Data Cache Manager
 
-A Flutter cache manager package for storing and managing Dart data types.
+A Flutter cache manager plugin for storing and managing Dart data types.
 
 [![pub package](https://img.shields.io/pub/v/data_cache_manager.svg)](https://pub.dartlang.org/packages/data_cache_manager)
 [![docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://pub.dev/documentation/data_cache_manager/latest/)
