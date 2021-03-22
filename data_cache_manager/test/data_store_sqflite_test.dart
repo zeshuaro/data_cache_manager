@@ -46,7 +46,7 @@ void main() async {
         dateTime: now,
       );
       await dataStore.insert(dbData);
-      final result = (await dataStore.get(key, params))!;
+      final result = await dataStore.get(key, params);
 
       expect(result?.userValue, value);
       expect(result?.useCount, 0);

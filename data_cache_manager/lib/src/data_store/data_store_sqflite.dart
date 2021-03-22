@@ -10,7 +10,7 @@ import 'package:sqflite/sqflite.dart';
 class DataStoreSqflite implements DataStore {
   /// The database file name.
   final String dbName;
-  Future<Database>? _db;
+  Future<Database?> _db;
 
   DataStoreSqflite({this.dbName = 'data_store_sqflite'})
       : _db = _initDb('$dbName.db');
