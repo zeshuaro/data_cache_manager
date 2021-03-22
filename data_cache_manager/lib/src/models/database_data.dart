@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'models.dart';
@@ -26,7 +25,7 @@ enum _DataType {
 class DatabaseData extends Equatable {
   /// The unique ID, usually generated automatically.
   @JsonKey(name: '_id')
-  final int id;
+  final int? id;
 
   /// The key for the data.
   @JsonKey(name: 'cacheKey')
@@ -34,7 +33,7 @@ class DatabaseData extends Equatable {
 
   /// The data value.
   @JsonKey(name: 'cacheData')
-  final String value;
+  final String? value;
 
   /// The data use count.
   final int useCount;
@@ -65,13 +64,13 @@ class DatabaseData extends Equatable {
   /// Create a new instance of DatabaseData.
   DatabaseData({
     this.id,
-    this.key,
-    this.type,
-    this.queryParams,
     this.value,
-    this.updatedAt,
-    this.lastUsedAt,
-    this.useCount,
+    required this.key,
+    required this.type,
+    required this.queryParams,
+    required this.updatedAt,
+    required this.lastUsedAt,
+    required this.useCount,
   });
 
   /// Create a new instance of DatabaseData from json.
@@ -83,13 +82,13 @@ class DatabaseData extends Equatable {
   ///
   /// Throw [UnsupportedDataType] if the type of the [value] is not supported.
   factory DatabaseData.fromUserValue({
-    @required dynamic value,
-    @required String key,
-    @required QueryParams queryParams,
-    @required DateTime dateTime,
+    required dynamic value,
+    required String key,
+    required QueryParams queryParams,
+    required DateTime dateTime,
   }) {
     _DataType dataType;
-    String cacheData;
+    String? cacheData;
 
     if (value == null) {
       dataType = _DataType.nullType;
@@ -138,7 +137,7 @@ class DatabaseData extends Equatable {
   Map<String, dynamic> toJson() => _$DatabaseDataToJson(this);
 
   @override
-  List<Object> get props {
+  List<Object?> get props {
     return [
       id,
       key,
@@ -163,15 +162,15 @@ class DatabaseData extends Equatable {
     if (type == _DataType.nullType) {
       result = null;
     } else if (type == _DataType.intType) {
-      result = int.parse(value);
+      result = int.parse(value!);
     } else if (type == _DataType.doubleType) {
-      result = double.parse(value);
+      result = double.parse(value!);
     } else if (type == _DataType.stringType) {
       result = value;
     } else if (type == _DataType.boolType) {
       result = value == 'true' ? true : false;
     } else if (type == _DataType.listType || type == _DataType.mapType) {
-      result = jsonDecode(value);
+      result = jsonDecode(value!);
     } else {
       throw UnsupportedDataType();
     }

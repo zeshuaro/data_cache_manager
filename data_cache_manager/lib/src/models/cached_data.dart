@@ -10,7 +10,7 @@ enum CacheLoc { server, local, memory }
 @CopyWith()
 class CachedData extends Equatable {
   /// The cached data value.
-  final dynamic value;
+  final Object? value;
 
   /// The location of the cache is retrieved.
   final CacheLoc location;
@@ -27,14 +27,14 @@ class CachedData extends Equatable {
   /// Create a new instance of CachedData.
   CachedData({
     this.value,
-    this.location,
-    this.updatedAt,
-    this.lastUsedAt,
-    this.useCount,
+    required this.location,
+    required this.updatedAt,
+    required this.lastUsedAt,
+    required this.useCount,
   });
 
   @override
-  List<Object> get props {
+  List<Object?> get props {
     return [
       value,
       location,

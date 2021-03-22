@@ -46,10 +46,10 @@ void main() async {
         dateTime: now,
       );
       await dataStore.insert(dbData);
-      final result = await dataStore.get(key, params);
+      final result = (await dataStore.get(key, params))!;
 
-      expect(result.userValue, value);
-      expect(result.useCount, 0);
+      expect(result?.userValue, value);
+      expect(result?.useCount, 0);
     }
 
     test('testInsertNull', () async => await testInsert(null));
@@ -77,10 +77,10 @@ void main() async {
       await dataStore.insert(dbDataNoParams);
 
       var result = await dataStore.get(key, params);
-      expect(result.userValue, value);
+      expect(result?.userValue, value);
 
       result = await dataStore.get(key, emptyParams);
-      expect(result.userValue, valueNoParams);
+      expect(result?.userValue, valueNoParams);
     });
 
     test('testGetWithQueryParamsDiffOrder', () async {
@@ -96,44 +96,44 @@ void main() async {
       await dataStore.insert(dbData);
 
       var result = await dataStore.get(key, firstParams);
-      expect(result.userValue, value);
+      expect(result?.userValue, value);
 
       result = await dataStore.get(key, secondParams);
-      expect(result.userValue, value);
+      expect(result?.userValue, value);
     });
   });
 
   test('testUpdate', () async {
     await dataStore.insert(dbData);
     var result = await dataStore.get(key, params);
-    expect(result.userValue, value);
-    expect(result.useCount, 0);
+    expect(result?.userValue, value);
+    expect(result?.useCount, 0);
 
-    final newDbData = dbData.copyWith(id: result.id, useCount: 1);
+    final newDbData = dbData.copyWith(id: result?.id, useCount: 1);
     await dataStore.update(newDbData);
     result = await dataStore.get(key, params);
-    expect(result.userValue, value);
-    expect(result.useCount, 1);
+    expect(result?.userValue, value);
+    expect(result?.useCount, 1);
   });
 
   test('testUpsert', () async {
     await dataStore.insert(dbData);
     var result = await dataStore.get(key, params);
-    expect(result.userValue, value);
-    expect(result.useCount, 0);
+    expect(result?.userValue, value);
+    expect(result?.useCount, 0);
 
-    final newDbData = dbData.copyWith(id: result.id, useCount: 1);
+    final newDbData = dbData.copyWith(id: result?.id, useCount: 1);
     await dataStore.upsert(newDbData);
     result = await dataStore.get(key, params);
-    expect(result.userValue, value);
-    expect(result.useCount, 1);
+    expect(result?.userValue, value);
+    expect(result?.useCount, 1);
   });
 
   test('testRemove', () async {
     await dataStore.insert(dbData);
 
     var result = await dataStore.get(key, params);
-    expect(result.userValue, value);
+    expect(result?.userValue, value);
 
     await dataStore.remove(key, params);
     result = await dataStore.get(key, params);
@@ -175,6 +175,6 @@ void main() async {
 
     await dataStore.close();
     final dataStoreDb = await dataStore.db();
-    expect(dataStoreDb.isOpen, false);
+    expect(dataStoreDb?.isOpen, false);
   });
 }

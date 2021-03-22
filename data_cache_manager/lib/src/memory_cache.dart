@@ -7,12 +7,12 @@ class _MemoryCache {
   /// Add data to cache.
   void add(String key, String params, CachedData data) {
     _cache.putIfAbsent(key, () => <String, CachedData>{});
-    _cache[key][params] = data;
+    _cache[key]![params] = data;
   }
 
   /// Get data from cache.
-  CachedData get(String key, String params) {
-    CachedData data;
+  CachedData? get(String key, String params) {
+    CachedData? data;
     final map = _cache[key];
     if (map != null) data = map[params];
 
@@ -21,8 +21,8 @@ class _MemoryCache {
 
   /// Remove data from cache.
   void remove(String key, String params) {
-    if (_cache.containsKey(key) && _cache[key].containsKey(params)) {
-      _cache[key].remove(params);
+    if (_cache.containsKey(key) && _cache[key]!.containsKey(params)) {
+      _cache[key]!.remove(params);
     }
   }
 

@@ -21,7 +21,7 @@ class DataCacheManager {
   ///
   /// You can pass in your [config] to customize the DataCacheManager. You
   /// can also pass in your own [dataStore] implementation for storing the data.
-  DataCacheManager({this.config = const Config(), DataStore dataStore})
+  DataCacheManager({this.config = const Config(), DataStore? dataStore})
       : dataStore = dataStore ?? DataStoreSqflite(dbName: config.dbKey) {
     if (config.cleanupOnInit) {
       if (config.stalePeriod != null) removeStale();
@@ -32,8 +32,8 @@ class DataCacheManager {
   }
 
   final _memCache = _MemoryCache();
-  Timer _cleanupTask;
-  DateTime _currDateTime;
+  late DateTime _currDateTime;
+  Timer? _cleanupTask;
   DateTime _dateTimeRef = DateTime.now();
 
   @visibleForTesting
@@ -95,10 +95,10 @@ class DataCacheManager {
   /// remove all the data from cache with the same [key], even they have
   /// different [queryParams]. And setting [rebuildDb] to `true` will clean up
   /// the SQL database and free up the space.
-  Future<CachedData> get(
+  Future<CachedData?> get(
     String key, {
     Map<String, dynamic> queryParams = const <String, dynamic>{},
-    DateTime updatedAt,
+    DateTime? updatedAt,
     bool removeSameKeyData = false,
     bool rebuildDb = false,
   }) async {
@@ -174,9 +174,11 @@ class DataCacheManager {
   /// Get current datetime.
   Future<DateTime> _getCurrDateTime() async {
     final now = DateTime.now();
+    _currDateTime = now;
+
     if (config.useNtpDateTime) {
       final diff = _dateTimeRef.difference(now).inSeconds;
-      if (_currDateTime == null || diff > 2) {
+      if (diff > 2) {
         _dateTimeRef = now;
         _currDateTime = await NTP.now();
       }
@@ -188,11 +190,11 @@ class DataCacheManager {
   }
 
   /// Get data from cache.
-  Future<CachedData> _getFromCache(
+  Future<CachedData?> _getFromCache(
     String key,
     QueryParams params,
   ) async {
-    CachedData data;
+    CachedData? data;
     final currDateTime = await _getCurrDateTime();
 
     if (config.useMemCache) {
@@ -226,7 +228,7 @@ class DataCacheManager {
   void _scheduleCleanup() {
     if (_cleanupTask == null) {
       isCleanupTaskSet = true;
-      _cleanupTask = Timer(config.cleanupInterval, () async {
+      _cleanupTask = Timer(config.cleanupInterval!, () async {
         if (config.stalePeriod != null) await removeStale();
         if (config.maxCacheSize != null) await _removeOversized();
         _cleanupTask = null;
@@ -239,7 +241,7 @@ class DataCacheManager {
   @visibleForTesting
   Future<void> removeStale() async {
     final staleDateTime =
-        (await _getCurrDateTime()).subtract(config.stalePeriod);
+        (await _getCurrDateTime()).subtract(config.stalePeriod!);
     final removedData = await dataStore.removeStale(staleDateTime);
     if (config.useMemCache) _removeMemCache(removedData);
   }
@@ -254,7 +256,7 @@ class DataCacheManager {
   /// Clean up the cache to maintain the cache file size.
   Future<void> _removeOversized() async {
     final removedData = await dataStore.removeOversized(
-      config.maxCacheSize,
+      config.maxCacheSize!,
     );
     if (config.useMemCache) _removeMemCache(removedData);
   }

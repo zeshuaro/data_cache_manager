@@ -31,20 +31,20 @@ void main() async {
 
   group('testAdd', () {
     Future<void> testAdd(data) async {
-      var result = await managerNoMemCache.add(defaultKey, data);
-      final updatedAt = result.updatedAt;
-      expect(result.value, data);
-      expect(result.location, CacheLoc.server);
-      expect(result.useCount, 0);
+      final addResult = await managerNoMemCache.add(defaultKey, data);
+      final updatedAt = addResult.updatedAt;
+      expect(addResult.value, data);
+      expect(addResult.location, CacheLoc.server);
+      expect(addResult.useCount, 0);
 
-      result = await managerNoMemCache.get(defaultKey);
-      expect(result.value, data);
-      expect(result.location, CacheLoc.local);
+      final getResult = await managerNoMemCache.get(defaultKey);
+      expect(getResult?.value, data);
+      expect(getResult?.location, CacheLoc.local);
       expect(
-        result.updatedAt.millisecondsSinceEpoch,
+        getResult?.updatedAt.millisecondsSinceEpoch,
         updatedAt.millisecondsSinceEpoch,
       );
-      expect(result.useCount, 1);
+      expect(getResult?.useCount, 1);
     }
 
     test('testAddNull', () async => await testAdd(null));
@@ -104,10 +104,10 @@ void main() async {
         defaultKey,
         queryParams: queryParams,
       );
-      expect(result.value, limitedData);
+      expect(result?.value, limitedData);
 
       result = await defaultManager.get(defaultKey);
-      expect(result.value, unlimitedData);
+      expect(result?.value, unlimitedData);
     });
 
     test('testGetWithQueryParamsDiffOrder', () async {
@@ -124,13 +124,13 @@ void main() async {
         defaultKey,
         queryParams: firstParams,
       );
-      expect(result.value, defaultData);
+      expect(result?.value, defaultData);
 
       result = await defaultManager.get(
         defaultKey,
         queryParams: secondParams,
       );
-      expect(result.value, defaultData);
+      expect(result?.value, defaultData);
     });
 
     test('testGetWithUpToDateCache', () async {
@@ -141,7 +141,7 @@ void main() async {
         defaultKey,
         updatedAt: updatedAt,
       );
-      expect(result.value, defaultData);
+      expect(result?.value, defaultData);
     });
 
     test('testGetWithOutdatedCache', () async {
@@ -159,8 +159,8 @@ void main() async {
       await managerNoMemCache.add(defaultKey, defaultData);
       var result = await managerNoMemCache.get(defaultKey);
 
-      expect(result.value, defaultData);
-      expect(result.location, CacheLoc.local);
+      expect(result?.value, defaultData);
+      expect(result?.location, CacheLoc.local);
     });
 
     test('testRemoveSameKeyData', () async {
@@ -191,8 +191,8 @@ void main() async {
       await defaultManager.add(defaultKey, defaultData);
 
       for (var count = 0; count < useCount; count++) {
-        final resultData = await defaultManager.get(defaultKey);
-        expect(resultData.useCount, count + 1);
+        final result = await defaultManager.get(defaultKey);
+        expect(result?.useCount, count + 1);
       }
     });
   });
@@ -201,7 +201,7 @@ void main() async {
     await defaultManager.add(defaultKey, defaultData);
 
     var result = await defaultManager.get(defaultKey);
-    expect(result.value, defaultData);
+    expect(result?.value, defaultData);
 
     await defaultManager.remove(defaultKey);
     result = await defaultManager.get(defaultKey);
