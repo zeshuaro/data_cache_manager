@@ -1,3 +1,7 @@
+## 1.0.0+1
+
+* **fix**: Fix example app dev dependencies
+
 ## 1.0.0
 
 * **BREAKING**: Opt into null safety
