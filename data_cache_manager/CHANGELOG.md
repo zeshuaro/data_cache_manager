@@ -1,6 +1,6 @@
 ## 1.0.0+1
 
-* **chore**: Bump example app `pedantic: ^1.11.0`
+* **fix**: Fix example app dev dependencies
 
 ## 1.0.0
 
