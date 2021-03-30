@@ -18,13 +18,13 @@ abstract class DataStore {
   /// Get data from storage.
   ///
   /// The retrieved data is associated to both the [key] and [queryParams].
-  Future<DatabaseData> get(String key, QueryParams queryParams);
+  Future<DatabaseData?> get(String key, QueryParams queryParams);
 
   /// Get and udpate data in storage
   ///
   /// The retrieved data is associated to both the [key] and [queryParams]. The
   /// data should also be updated with the provided [lastUsedAt] datetime.
-  Future<DatabaseData> getAndUpdate(
+  Future<DatabaseData?> getAndUpdate(
     String key,
     QueryParams queryParams,
     DateTime lastUsedAt,

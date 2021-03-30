@@ -10,7 +10,7 @@ import 'package:sqflite/sqflite.dart';
 class DataStoreSqflite implements DataStore {
   /// The database file name.
   final String dbName;
-  Future<Database> _db;
+  Future<Database?> _db;
 
   DataStoreSqflite({this.dbName = 'data_store_sqflite'})
       : _db = _initDb('$dbName.db');
@@ -72,8 +72,8 @@ class DataStoreSqflite implements DataStore {
   }
 
   @override
-  Future<DatabaseData> get(String key, QueryParams queryParams) async {
-    DatabaseData dbData;
+  Future<DatabaseData?> get(String key, QueryParams queryParams) async {
+    DatabaseData? dbData;
     final db = await _getDb();
     final maps = await _queryByKeyAndParams(db, key, queryParams);
     if (maps.isNotEmpty) dbData = DatabaseData.fromJson(maps.first);
@@ -82,21 +82,21 @@ class DataStoreSqflite implements DataStore {
   }
 
   @override
-  Future<DatabaseData> getAndUpdate(
+  Future<DatabaseData?> getAndUpdate(
     String key,
     QueryParams queryParams,
     DateTime lastUsedAt,
   ) async {
-    DatabaseData dbData;
+    DatabaseData? dbData;
     final db = await _getDb();
 
     await db.transaction((txn) async {
       final maps = await _queryByKeyAndParams(txn, key, queryParams);
       if (maps.isNotEmpty) {
         dbData = DatabaseData.fromJson(maps.first);
-        final newDbData = dbData.copyWith(
+        final newDbData = dbData!.copyWith(
           lastUsedAt: lastUsedAt,
-          useCount: dbData.useCount + 1,
+          useCount: dbData!.useCount + 1,
         );
         await _updateData(txn, newDbData);
       }
@@ -203,7 +203,7 @@ class DataStoreSqflite implements DataStore {
   }
 
   @visibleForTesting
-  Future<Database> db() async => await _db;
+  Future<Database?> db() async => await _db;
 
   Future<Database> _getDb() async {
     return (await (_db)) ?? await _initDb(dbName);

@@ -17,7 +17,7 @@ class Config extends Equatable {
   final bool useNtpDateTime;
 
   /// The minimum [Duration] for a cache to become stale.
-  final Duration stalePeriod;
+  final Duration? stalePeriod;
 
   /// Whether to cleanup once on initialization only. Default to `false`.
   ///
@@ -28,10 +28,10 @@ class Config extends Equatable {
   /// The interval between cache cleanups.
   ///
   /// This option is ignored if [cleanupOnInit] is set to `true`.
-  final Duration cleanupInterval;
+  final Duration? cleanupInterval;
 
   /// The maximum cache size in bytes.
-  final int maxCacheSize;
+  final int? maxCacheSize;
 
   /// Create a new instance of Config.
   const Config({
@@ -45,7 +45,7 @@ class Config extends Equatable {
   });
 
   @override
-  List<Object> get props {
+  List<Object?> get props {
     return [
       dbKey,
       useMemCache,

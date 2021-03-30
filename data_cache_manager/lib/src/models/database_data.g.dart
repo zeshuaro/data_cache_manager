@@ -8,14 +8,14 @@ part of 'database_data.dart';
 
 extension DatabaseDataCopyWith on DatabaseData {
   DatabaseData copyWith({
-    int id,
-    String key,
-    DateTime lastUsedAt,
-    QueryParams queryParams,
-    _DataType type,
-    DateTime updatedAt,
-    int useCount,
-    String value,
+    int? id,
+    String? key,
+    DateTime? lastUsedAt,
+    QueryParams? queryParams,
+    _DataType? type,
+    DateTime? updatedAt,
+    int? useCount,
+    String? value,
   }) {
     return DatabaseData(
       id: id ?? this.id,
@@ -36,11 +36,11 @@ extension DatabaseDataCopyWith on DatabaseData {
 
 DatabaseData _$DatabaseDataFromJson(Map<String, dynamic> json) {
   return DatabaseData(
-    id: json['_id'] as int,
+    id: json['_id'] as int?,
+    value: json['cacheData'] as String?,
     key: json['cacheKey'] as String,
     type: _Utils.dataTypeFromJson(json['dataType'] as int),
     queryParams: _Utils.queryParamsFromJson(json['queryParams'] as String),
-    value: json['cacheData'] as String,
     updatedAt: _Utils.dateTimeFromJson(json['updatedAt'] as int),
     lastUsedAt: _Utils.dateTimeFromJson(json['lastUsedAt'] as int),
     useCount: json['useCount'] as int,
