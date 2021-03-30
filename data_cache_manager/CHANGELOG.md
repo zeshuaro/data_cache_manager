@@ -1,6 +1,6 @@
 ## 1.0.0
 
-* **BREAKING**: Opt into nullsafety
+* **BREAKING**: Opt into null safety
 * **chore**: Bump `copy_with_extension: ">=2.0.0 <2.1.0"`
 * **chore**: Bump `equatable: ">=2.0.0 < 2.1.0"`
 * **chore**: Bump `json_annotation: ">=4.0.0 <4.1.0"`
