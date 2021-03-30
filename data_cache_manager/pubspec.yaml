@@ -1,6 +1,6 @@
 name: data_cache_manager
 description: A Flutter cache manager plugin for storing and managing Dart data types.
-version: 1.0.0
+version: 1.0.0+1
 homepage: https://github.com/zeshuaro/data_cache_manager/tree/main/data_cache_manager
 
 environment:

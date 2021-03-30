@@ -1,3 +1,7 @@
+## 1.0.0+1
+
+* **chore**: Bump example app `pedantic: ^1.11.0`
+
 ## 1.0.0
 
 * **BREAKING**: Opt into null safety
