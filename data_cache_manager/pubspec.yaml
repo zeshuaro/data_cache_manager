@@ -13,9 +13,7 @@ dependencies:
   copy_with_extension: ">=2.0.0 <2.1.0"
   equatable: ">=2.0.0 < 2.1.0"
   json_annotation: ">=4.0.0 <4.1.0"
-  ntp:
-    git:
-      url: https://github.com/knezzz/ntp.git
+  ntp: ">=2.0.0 <2.1.0"
   path: ">=1.8.0 <1.9.0"
   sqflite: ">=2.0.0 <2.1.0"
 
