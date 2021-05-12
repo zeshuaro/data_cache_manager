@@ -7,22 +7,22 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 0.0.1+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   firebase_db_cache:
     path: ../
-  cupertino_icons: ^1.0.0
-  data_cache_manager: ^0.0.1
-  firebase_core: ^1.0.0
-  firebase_database: ^6.1.0
+  cupertino_icons: ^1.0.3
+  data_cache_manager: ^1.0.0+1
+  firebase_core: ^1.1.1
+  firebase_database: ^7.0.0-dev.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.9.2
+  pedantic: ^1.11.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
