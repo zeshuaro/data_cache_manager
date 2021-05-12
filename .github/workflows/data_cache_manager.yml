@@ -6,8 +6,10 @@ on:
       - main
   pull_request:
     paths:
-      - "data_cache_manager/**"
-      - ".github/workflows/data_cache_manager.yml"
+      - data_cache_manager/**
+      - .github/workflows/data_cache_manager.yml
+      - .codecov.yml
+      - renovate.json
 
 defaults:
   run:
@@ -56,10 +58,9 @@ jobs:
         with:
           channel: stable
 
-      - name: Run analyzer and tests 🧪
+      - name: Run tests 🧪
         run: |
           flutter pub get
-          flutter analyze
           flutter test --coverage
       - name: Upload coverage report 📡
         uses: codecov/codecov-action@v1
