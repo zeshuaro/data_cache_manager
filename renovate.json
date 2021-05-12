@@ -1,5 +1,22 @@
 {
-  "extends": [
-    "config:base"
+  "extends": ["config:base"],
+  "ignorePaths": ["**/example/ios/**", "**/example/android/**"],
+  "labels": ["dependencies"],
+  "stabilityDays": 3,
+  "prCreation": "not-pending",
+  "schedule": ["after 6pm and before 6am every weekday", "every weekend"],
+  "packageRules": [
+    {
+      "matchPaths": [".github/workflows/*.yml"],
+      "labels": ["github-actions"]
+    },
+    {
+      "matchPaths": ["data_cache_manager/**"],
+      "groupName": "data_cache_manager packages"
+    },
+    {
+      "matchPaths": ["firebase_db_cache/**"],
+      "groupName": "firebase_db_cache packages"
+    }
   ]
 }
