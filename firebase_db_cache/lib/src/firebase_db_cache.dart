@@ -10,7 +10,7 @@ class FirebaseDbCache {
   /// Create a new instance of FirebaseDbCache.
   ///
   /// You can pass in a [DataCacheManager] with you own configurations.
-  FirebaseDbCache([DataCacheManager manager])
+  FirebaseDbCache([DataCacheManager? manager])
       : manager = manager ?? DefaultDataCacheManager.instance;
 
   /// Get the [query] data.
@@ -28,9 +28,9 @@ class FirebaseDbCache {
   ///
   /// When removing outdated cache, setting [removeSameKeyData] to `true` will
   /// remove all the data from cache with the same key/path.
-  Future<CachedData> get(
+  Future<CachedData?> get(
     Query query, {
-    DateTime updatedAt,
+    DateTime? updatedAt,
     bool removeSameKeyData = false,
   }) async {
     final key = query.path;

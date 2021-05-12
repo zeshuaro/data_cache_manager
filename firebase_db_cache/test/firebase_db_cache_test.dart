@@ -2,14 +2,14 @@ import 'package:data_cache_manager/data_cache_manager.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_db_cache/firebase_db_cache.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-class MockQuery extends Mock implements Query {}
+import 'firebase_db_cache_test.mocks.dart';
 
-class MockDataSnapshot extends Mock implements DataSnapshot {}
-
+@GenerateMocks([Query, DataSnapshot])
 void main() async {
   sqfliteFfiInit();
 
@@ -40,32 +40,32 @@ void main() async {
 
   test('testGetFromServer', () async {
     final result = await firebaseDbCache.get(query);
-    expect(result.value, value);
-    expect(result.location, CacheLoc.server);
+    expect(result?.value, value);
+    expect(result?.location, CacheLoc.server);
   });
 
   test('testGetFromCache', () async {
     var result = await firebaseDbCache.get(query);
-    final updatedAt = result.updatedAt;
-    expect(result.value, value);
-    expect(result.location, CacheLoc.server);
+    final updatedAt = result?.updatedAt;
+    expect(result?.value, value);
+    expect(result?.location, CacheLoc.server);
 
     result = await firebaseDbCache.get(query);
-    expect(result.value, value);
-    expect(result.location, CacheLoc.memory);
-    expect(result.updatedAt, updatedAt);
+    expect(result?.value, value);
+    expect(result?.location, CacheLoc.memory);
+    expect(result?.updatedAt, updatedAt);
   });
 
   test('testGetFromOutdatedCache', () async {
     final updatedAt = DateTime.now().add(Duration(days: 1));
 
     var result = await firebaseDbCache.get(query);
-    expect(result.value, value);
-    expect(result.location, CacheLoc.server);
+    expect(result?.value, value);
+    expect(result?.location, CacheLoc.server);
 
     result = await firebaseDbCache.get(query, updatedAt: updatedAt);
-    expect(result.value, value);
-    expect(result.location, CacheLoc.server);
+    expect(result?.value, value);
+    expect(result?.location, CacheLoc.server);
   });
 
   test('testRemoveSameKeyData', () async {
@@ -83,19 +83,19 @@ void main() async {
 
     // First get should return data from server
     var result = await firebaseDbCache.get(query);
-    expect(result.value, value);
-    expect(result.location, CacheLoc.server);
+    expect(result?.value, value);
+    expect(result?.location, CacheLoc.server);
     result = await firebaseDbCache.get(queryWithParams);
-    expect(result.value, otherValue);
-    expect(result.location, CacheLoc.server);
+    expect(result?.value, otherValue);
+    expect(result?.location, CacheLoc.server);
 
     // Second get should return data from memory cache
     result = await firebaseDbCache.get(query);
-    expect(result.value, value);
-    expect(result.location, CacheLoc.memory);
+    expect(result?.value, value);
+    expect(result?.location, CacheLoc.memory);
     result = await firebaseDbCache.get(queryWithParams);
-    expect(result.value, otherValue);
-    expect(result.location, CacheLoc.memory);
+    expect(result?.value, otherValue);
+    expect(result?.location, CacheLoc.memory);
 
     // Get with updated datetime should return data from server
     result = await firebaseDbCache.get(
@@ -103,10 +103,10 @@ void main() async {
       updatedAt: updatedAt,
       removeSameKeyData: true,
     );
-    expect(result.value, value);
-    expect(result.location, CacheLoc.server);
+    expect(result?.value, value);
+    expect(result?.location, CacheLoc.server);
     result = await firebaseDbCache.get(queryWithParams);
-    expect(result.value, otherValue);
-    expect(result.location, CacheLoc.server);
+    expect(result?.value, otherValue);
+    expect(result?.location, CacheLoc.server);
   });
 }

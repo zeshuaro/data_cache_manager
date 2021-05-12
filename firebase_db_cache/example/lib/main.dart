@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   final _rootRef = FirebaseDatabase.instance.reference();
   final _key = 'key';
   final _value = 'value';
-  CachedData _cachedData;
+  CachedData? _cachedData;
 
   @override
   void initState() {
@@ -46,11 +46,11 @@ class _MyAppState extends State<MyApp> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Cached data: ${_cachedData.value}\n'),
-                        Text('Cache location: ${_cachedData.location}\n'),
-                        Text('Updated at: ${_cachedData.updatedAt}\n'),
-                        Text('Last used at: ${_cachedData.lastUsedAt}\n'),
-                        Text('Use count: ${_cachedData.useCount}\n'),
+                        Text('Cached data: ${_cachedData!.value}\n'),
+                        Text('Cache location: ${_cachedData!.location}\n'),
+                        Text('Updated at: ${_cachedData!.updatedAt}\n'),
+                        Text('Last used at: ${_cachedData!.lastUsedAt}\n'),
+                        Text('Use count: ${_cachedData!.useCount}\n'),
                       ],
                     ),
                     ElevatedButton(
