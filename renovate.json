@@ -13,11 +13,13 @@
     },
     {
       "matchPaths": ["data_cache_manager/**"],
-      "groupName": "data_cache_manager packages"
+      "groupName": "data_cache_manager packages",
+      "commitMessagePrefix": "[data_cache_manager]"
     },
     {
       "matchPaths": ["firebase_db_cache/**"],
-      "groupName": "firebase_db_cache packages"
+      "groupName": "firebase_db_cache packages",
+      "commitMessagePrefix": "[firebase_db_cache]"
     }
   ]
 }
