@@ -11,11 +11,13 @@ class QueryParams extends Equatable {
   QueryParams([Map<String, dynamic> params = const <String, dynamic>{}])
       : _paramsMap = SplayTreeMap.from(params);
 
+  // coverage:ignore-start
   @override
   List<Object> get props => [_paramsMap];
 
   @override
   bool get stringify => true;
+  // coverage:ignore-end
 
   /// Return the query parameters as a [Map].
   Map<String, dynamic> get asMap => _paramsMap;

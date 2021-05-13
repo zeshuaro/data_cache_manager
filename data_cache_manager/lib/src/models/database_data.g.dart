@@ -12,7 +12,7 @@ extension DatabaseDataCopyWith on DatabaseData {
     String? key,
     DateTime? lastUsedAt,
     QueryParams? queryParams,
-    _DataType? type,
+    DataType? type,
     DateTime? updatedAt,
     int? useCount,
     String? value,
