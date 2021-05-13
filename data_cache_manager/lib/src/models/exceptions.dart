@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 /// Exception for unsupported cache data type.
 class UnsupportedDataType implements Exception {
   final message = 'Only data types of int, double, String, '

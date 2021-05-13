@@ -44,6 +44,7 @@ class Config extends Equatable {
     this.maxCacheSize,
   });
 
+  // coverage:ignore-start
   @override
   List<Object?> get props {
     return [
@@ -59,4 +60,5 @@ class Config extends Equatable {
 
   @override
   bool get stringify => true;
+  // coverage:ignore-end
 }

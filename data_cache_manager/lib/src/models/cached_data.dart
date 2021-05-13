@@ -33,6 +33,7 @@ class CachedData extends Equatable {
     required this.useCount,
   });
 
+  // coverage:ignore-start
   @override
   List<Object?> get props {
     return [
@@ -46,4 +47,5 @@ class CachedData extends Equatable {
 
   @override
   bool get stringify => true;
+  // coverage:ignore-end
 }

@@ -1,8 +1,13 @@
 import 'package:data_cache_manager/data_cache_manager.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
+import 'data_cache_manager_test.mocks.dart';
+
+@GenerateMocks([DataStoreSqflite, DatabaseData, QueryParams])
 void main() async {
   sqfliteFfiInit();
 
@@ -237,7 +242,7 @@ void main() async {
 
   test('testRemoveStale', () async {
     final stalePeriod = Duration(seconds: 1);
-    var manager = DataCacheManager(
+    final manager = DataCacheManager(
       config: Config(stalePeriod: stalePeriod),
       dataStore: dataStore,
     );
@@ -250,6 +255,30 @@ void main() async {
     expect(result, null);
   });
 
+  test('testRemoveOversized', () async {
+    final maxCacheSize = 1000;
+    final data = MockDatabaseData();
+    final queryParams = MockQueryParams();
+    final dataStore = MockDataStoreSqflite();
+
+    when(data.key).thenReturn(defaultKey);
+    when(data.queryParams).thenReturn(queryParams);
+    when(queryParams.asStr).thenReturn('queryParams');
+    when(dataStore.removeOversized(maxCacheSize)).thenAnswer((_) {
+      return Future.value([data]);
+    });
+
+    DataCacheManager(
+      config: Config(
+        maxCacheSize: maxCacheSize,
+        cleanupOnInit: true,
+      ),
+      dataStore: dataStore,
+    );
+
+    verify(dataStore.removeOversized(maxCacheSize)).called(1);
+  });
+
   test('testWithNtp', () async {
     var manager = DataCacheManager(
       config: Config(useNtpDateTime: true),
@@ -259,5 +288,23 @@ void main() async {
 
     final result = await manager.add(defaultKey, defaultData);
     expect(result.value, defaultData);
+  });
+
+  test('testOpenDb', () async {
+    final dataStore = MockDataStoreSqflite();
+    final manager = DataCacheManager(dataStore: dataStore);
+
+    await manager.open();
+
+    verify(dataStore.open()).called(1);
+  });
+
+  test('testCloseDb', () async {
+    final dataStore = MockDataStoreSqflite();
+    final manager = DataCacheManager(dataStore: dataStore);
+
+    await manager.close();
+
+    verify(dataStore.close()).called(1);
   });
 }

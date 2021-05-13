@@ -9,7 +9,7 @@ import 'models.dart';
 part 'database_data.g.dart';
 
 /// The data types for identifying the type of the cached data.
-enum _DataType {
+enum DataType {
   nullType,
   intType,
   doubleType,
@@ -44,7 +44,7 @@ class DatabaseData extends Equatable {
     fromJson: _Utils.dataTypeFromJson,
     toJson: _Utils.dataTypeToJson,
   )
-  final _DataType type;
+  final DataType type;
 
   /// The query parameters associated with the data.
   @JsonKey(
@@ -87,32 +87,32 @@ class DatabaseData extends Equatable {
     required QueryParams queryParams,
     required DateTime dateTime,
   }) {
-    _DataType dataType;
+    DataType dataType;
     String? cacheData;
 
     if (value == null) {
-      dataType = _DataType.nullType;
+      dataType = DataType.nullType;
     } else if (value is int) {
-      dataType = _DataType.intType;
+      dataType = DataType.intType;
       cacheData = value.toString();
     } else if (value is double) {
-      dataType = _DataType.doubleType;
+      dataType = DataType.doubleType;
       cacheData = value.toString();
     } else if (value is String) {
-      dataType = _DataType.stringType;
+      dataType = DataType.stringType;
       cacheData = value;
     } else if (value is bool) {
-      dataType = _DataType.boolType;
+      dataType = DataType.boolType;
       cacheData = value.toString();
     } else if (value is List) {
-      dataType = _DataType.listType;
+      dataType = DataType.listType;
       try {
         cacheData = jsonEncode(value);
       } on JsonUnsupportedObjectError {
         throw UnsupportedDataType();
       }
     } else if (value is Map) {
-      dataType = _DataType.mapType;
+      dataType = DataType.mapType;
       try {
         cacheData = jsonEncode(value);
       } on JsonUnsupportedObjectError {
@@ -136,6 +136,7 @@ class DatabaseData extends Equatable {
   /// Return a json representation of the object.
   Map<String, dynamic> toJson() => _$DatabaseDataToJson(this);
 
+  // coverage:ignore-start
   @override
   List<Object?> get props {
     return [
@@ -152,6 +153,7 @@ class DatabaseData extends Equatable {
 
   @override
   bool get stringify => true;
+  // coverage:ignore-end
 
   /// Return the original data value with its type.
   ///
@@ -159,17 +161,17 @@ class DatabaseData extends Equatable {
   /// [UnsupportedDataType] if the data type is unsupported.
   dynamic get userValue {
     dynamic result;
-    if (type == _DataType.nullType) {
+    if (type == DataType.nullType) {
       result = null;
-    } else if (type == _DataType.intType) {
+    } else if (type == DataType.intType) {
       result = int.parse(value!);
-    } else if (type == _DataType.doubleType) {
+    } else if (type == DataType.doubleType) {
       result = double.parse(value!);
-    } else if (type == _DataType.stringType) {
+    } else if (type == DataType.stringType) {
       result = value;
-    } else if (type == _DataType.boolType) {
+    } else if (type == DataType.boolType) {
       result = value == 'true' ? true : false;
-    } else if (type == _DataType.listType || type == _DataType.mapType) {
+    } else if (type == DataType.listType || type == DataType.mapType) {
       result = jsonDecode(value!);
     } else {
       throw UnsupportedDataType();
@@ -181,9 +183,9 @@ class DatabaseData extends Equatable {
 
 /// Private class with utility methods for converting data types.
 class _Utils {
-  static _DataType dataTypeFromJson(int value) => _DataType.values[value];
+  static DataType dataTypeFromJson(int value) => DataType.values[value];
 
-  static int dataTypeToJson(_DataType value) => value.index;
+  static int dataTypeToJson(DataType value) => value.index;
 
   static QueryParams queryParamsFromJson(String value) {
     return QueryParams(jsonDecode(value));
