@@ -1,14 +1,6 @@
-## 1.0.0
-
-* Graduate package to a stable release. See pre-releases prior to this version for changelog entries
-* **chore**: Bump `firebase_database: ^7.0.0`
-* **chore**: Bump `data_cache_manager: ^1.0.0`
-
 ## 0.4.0-nullsafety.0
 
 * **BREAKING**: Opt into null safety
-* **chore**: Bump `firebase_database: ^7.0.0-dev.0`
-* **chore**: Bump `data_cache_manager: ">=1.0.0 <1.1.0"`
 
 ## 0.3.1
 
