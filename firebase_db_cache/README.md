@@ -17,7 +17,7 @@ Add this to your project's `pubspec.yaml` file:
 
 ```yml
 dependencies:
-  firebase_db_cache: ^0.4.0-nullsafety.0
+  firebase_db_cache: ^1.0.0
 ```
 
 ## Usage
