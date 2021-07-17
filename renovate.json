@@ -9,7 +9,11 @@
   "packageRules": [
     {
       "matchPaths": [".github/workflows/*.yml"],
-      "labels": ["github-actions"]
+      "labels": ["ci"]
+    },
+    {
+      "groupName": "Dev Dependencies",
+      "matchDepTypes": ["dev_dependencies"]
     },
     {
       "matchPaths": ["data_cache_manager/**"],
