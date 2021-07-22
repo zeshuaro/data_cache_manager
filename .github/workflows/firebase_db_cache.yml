@@ -64,7 +64,7 @@ jobs:
           flutter pub run build_runner build --delete-conflicting-outputs
           flutter test --coverage
       - name: Upload coverage report 📡
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v2
         with:
           flags: firebase_db_cache
           fail_ci_if_error: true
