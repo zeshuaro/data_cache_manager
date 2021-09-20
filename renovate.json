@@ -9,24 +9,22 @@
   "timezone": "Australia/Sydney",
   "packageRules": [
     {
-      "groupName": "GitHub Actions",
-      "semanticCommitType": "ci",
-      "matchPaths": [".github/workflows/*.yml"],
-      "labels": ["ci"]
+      "groupName": "data_cache_manager Dependencies",
+      "matchPaths": ["data_cache_manager/**"],
+      "semanticCommitScope": "data_cache_manager"
+    },
+    {
+      "groupName": "firebase_db_cache Dependencies",
+      "matchPaths": ["firebase_db_cache/**"],
+      "semanticCommitScope": "firebase_db_cache"
     },
     {
       "groupName": "Dev Dependencies",
       "matchDepTypes": ["dev_dependencies"]
     },
     {
-      "matchPaths": ["data_cache_manager/**"],
-      "groupName": "data_cache_manager packages",
-      "commitMessagePrefix": "[data_cache_manager]"
-    },
-    {
-      "matchPaths": ["firebase_db_cache/**"],
-      "groupName": "firebase_db_cache packages",
-      "commitMessagePrefix": "[firebase_db_cache]"
+      "groupName": "GitHub Actions Dependencies",
+      "matchPaths": [".github/workflows/*.yml"]
     }
   ]
 }
