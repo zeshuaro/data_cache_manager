@@ -34,18 +34,16 @@ extension DatabaseDataCopyWith on DatabaseData {
 // JsonSerializableGenerator
 // **************************************************************************
 
-DatabaseData _$DatabaseDataFromJson(Map<String, dynamic> json) {
-  return DatabaseData(
-    id: json['_id'] as int?,
-    value: json['cacheData'] as String?,
-    key: json['cacheKey'] as String,
-    type: _Utils.dataTypeFromJson(json['dataType'] as int),
-    queryParams: _Utils.queryParamsFromJson(json['queryParams'] as String),
-    updatedAt: _Utils.dateTimeFromJson(json['updatedAt'] as int),
-    lastUsedAt: _Utils.dateTimeFromJson(json['lastUsedAt'] as int),
-    useCount: json['useCount'] as int,
-  );
-}
+DatabaseData _$DatabaseDataFromJson(Map<String, dynamic> json) => DatabaseData(
+      id: json['_id'] as int?,
+      value: json['cacheData'] as String?,
+      key: json['cacheKey'] as String,
+      type: _Utils.dataTypeFromJson(json['dataType'] as int),
+      queryParams: _Utils.queryParamsFromJson(json['queryParams'] as String),
+      updatedAt: _Utils.dateTimeFromJson(json['updatedAt'] as int),
+      lastUsedAt: _Utils.dateTimeFromJson(json['lastUsedAt'] as int),
+      useCount: json['useCount'] as int,
+    );
 
 Map<String, dynamic> _$DatabaseDataToJson(DatabaseData instance) =>
     <String, dynamic>{
