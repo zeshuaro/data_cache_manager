@@ -1,3 +1,7 @@
+## 1.0.1
+
+* **chore**: Update dependency `json_annotation: ^4.3.0`
+
 ## 1.0.0+1
 
 * **fix**: Fix example app dev dependencies
