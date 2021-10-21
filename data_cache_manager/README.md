@@ -15,7 +15,7 @@ Add this to your project's `pubspec.yaml` file:
 
 ```yml
 dependencies:
-  data_cache_manager: ^1.0.0+1
+  data_cache_manager: ^1.0.1
 ```
 
 ## Usage
