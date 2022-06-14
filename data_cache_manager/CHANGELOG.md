@@ -1,3 +1,7 @@
+## 1.2.0
+
+* **chore**: Update dependency `copy_with_extension: ^4.0.0`
+
 ## 1.1.0
 
 * **chore**: Update dependency `copy_with_extension: ^3.0.0`
