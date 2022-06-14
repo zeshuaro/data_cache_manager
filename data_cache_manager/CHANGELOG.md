@@ -1,3 +1,16 @@
+## 1.0.2
+
+* **chore**: Remove upper version constraint of the dependencies
+
+```
+copy_with_extension: ^2.0.0
+equatable: ^2.0.0
+json_annotation: ^4.3.0
+ntp: ^2.0.0
+path: ^1.8.0
+sqflite: ^2.0.0
+```
+
 ## 1.0.1
 
 * **chore**: Update dependency `json_annotation: ^4.3.0`
