@@ -1,3 +1,7 @@
+## 1.1.0
+
+* **chore**: Update dependency `copy_with_extension: ^3.0.0`
+
 ## 1.0.2
 
 * **chore**: Remove upper version constraint of the dependencies
