@@ -5,14 +5,14 @@ version: 1.1.0
 homepage: https://github.com/zeshuaro/data_cache_manager/tree/main/firebase_db_cache
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: "<4.0.0"
   flutter: ">=1.20.0"
 
 dependencies:
   flutter:
     sdk: flutter
   data_cache_manager: ^1.0.0
-  firebase_database: ^8.0.0
+  firebase_database: ^10.0.0
 
 dev_dependencies:
   flutter_test:
