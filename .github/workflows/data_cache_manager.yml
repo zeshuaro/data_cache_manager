@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
@@ -49,7 +49,7 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
@@ -64,7 +64,7 @@ jobs:
           flutter pub run build_runner build --delete-conflicting-outputs
           flutter test --coverage
       - name: Upload coverage report 📡
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           flags: data_cache_manager
           fail_ci_if_error: true
